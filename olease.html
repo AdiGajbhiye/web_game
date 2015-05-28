@@ -9,44 +9,43 @@
         var balls = ["ball1", "ball2", "ball3", "ball4", "ball5", "ball6", "ball7", "ball8", "ball9", "ball10", "ball11", "ball12", "ball13", "ball14", "ball15", "ball16", "ball17", "ball18", "ball19", "ball20"];
 		var speed = [10,-10,10,-10,10,-10,10,-10,10,-10,10,-10,10,-10,10,-10,10,-10,10,-10];
         function main() {
-            document.addEventListener('keydown', function (event) {
-                if (event.keyCode == KEY_LEFT) left = 1;
-                if (event.keyCode == KEY_RIGHT) right = 1;
-                if (event.keyCode == KEY_A) A = 1;
-                if (event.keyCode == KEY_D) D = 1; b(); d();
-                if ((event.keyCode == KEY_UP)  &&  ((j%2) == 0)) {
-					var startx = parseInt(rect1.getAttribute("x"));
-					circle[j].disp(startx + 75);
-					j += 1;
-				}
-				if ((event.keyCode == KEY_W)  &&  ((j%2) == 1)) {
-					var startx = parseInt(rect2.getAttribute("x"));
-					circle[j].disp(startx + 75);
-					j += 1;
-				}
-            }, false);
-            document.addEventListener('keyup', function (event) {
-                if (event.keyCode == KEY_LEFT) left = 0;
-                if (event.keyCode == KEY_RIGHT) right = 0;
-                if (event.keyCode == KEY_A) A = 0;
-                if (event.keyCode == KEY_D) D = 0; b(); d();
-            }, false);
+            document.addEventListener('keydown', keyDown , false);
+            document.addEventListener('keyup', keyUp , false);
         }
-        function b() {
+        function te() {
             var rect1 = document.getElementById("rect1");
-            var x = parseInt(rect1.getAttribute("x"));
-            if ((left == 1) && (x >= 10)) { x -= 20; }
-            if ((right == 1) && (x <= 1200)) { x += 20 };
-            rect1.setAttribute("x", x);
+		    var x1 = parseInt(rect1.getAttribute("x"));
+		    if((left == 1) && (x1 >= 10))    x1 -= 10;
+		    if((right == 1) && (x1 <= 1000))  x1 += 10;
+		    rect1.setAttribute("x", x1);
+			var rect2 = document.getElementById("rect2");
+		    var x2 = parseInt(rect2.getAttribute("x"));
+		    if((A == 1) && (x2 >= 10))  x2 -= 10;
+			if((D == 1) && (x2 <= 1000))  x2 += 10;
+			rect2.setAttribute("x", x2);
         }
-        function d() {
-            var rect2 = document.getElementById("rect2");
-            var x = parseInt(rect2.getAttribute("x"));
-            if ((A == 1) && (x >= 10)) { x -= 20; }
-            if ((D == 1) && (x <= 1200)) { x += 20 };
-            rect2.setAttribute("x", x);
-        }
-		
+		function keyDown() {
+			if (event.keyCode == KEY_LEFT) left = 1;
+            if (event.keyCode == KEY_RIGHT) right = 1;
+            if (event.keyCode == KEY_A) A = 1;
+            if (event.keyCode == KEY_D) D = 1; 
+            if ((event.keyCode == KEY_UP)  &&  ((j%2) == 0)) {
+				var startx = parseInt(rect1.getAttribute("x"));
+				circle[j].disp(startx + 50);
+				j += 1;
+			}
+			if ((event.keyCode == KEY_W)  &&  ((j%2) == 1)) {
+				var startx = parseInt(rect2.getAttribute("x"));
+				circle[j].disp(startx + 50);
+				j += 1;
+			}
+		}
+		function keyUp() {
+			if (event.keyCode == KEY_LEFT) left = 0;
+            if (event.keyCode == KEY_RIGHT) right = 0;
+            if (event.keyCode == KEY_A) A = 0;
+            if (event.keyCode == KEY_D) D = 0;
+		}
 		{
 			circle.push({  
 				timer : 0,
@@ -60,6 +59,7 @@
 					}
 				},
 				animate : function (){
+					te();
 					this.circ = document.getElementById(balls[0]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
@@ -67,16 +67,17 @@
 						speed[0] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[0];  location.reload();
+
 						}
 					}
 					if (newy < 50) {
 						speed[0] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses");newy+=speed[0];  location.reload();
 						}
 					}
 					newy = newy + speed[0];
@@ -100,19 +101,19 @@
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
 					if (newy > 755) {
-						speed[1] = -10;
+						speed[1] = -20;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[1];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[1] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses");  newy+=speed[1];  location.reload();
 						}
 					}
 					newy = newy + speed[1];
@@ -139,16 +140,16 @@
 						speed[2] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[2];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[2] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses"); newy+=speed[2];  location.reload();
 						}
 					}
 					newy = newy + speed[2];
@@ -174,16 +175,16 @@
 						speed[3] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[3];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[3] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses"); newy+=speed[3];  location.reload();
 						}
 					}
 					newy = newy + speed[3];
@@ -210,16 +211,16 @@
 						speed[4] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[4];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[4] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses"); newy+=speed[4];  location.reload();
 						}
 					}
 					newy = newy + speed[4];
@@ -242,19 +243,19 @@
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
 					if (newy > 755) {
-						speed[5] = -10;
+						speed[5] = -20;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses");newy+=speed[5];  location.reload();
 						}
 					}
 					if (newy < 50) {
-						speed[5] = 10;
+						speed[5] = 20;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses");newy+=speed[5];  location.reload();
 						}
 					}
 					newy = newy + speed[5];
@@ -278,19 +279,19 @@
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
 					if (newy > 755) {
-						speed[4] = -10;
+						speed[6] = -20;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[6];  location.reload();
 						}
 					}
 					if (newy < 50) {
-						speed[4] = 10;
+						speed[6] = 20;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses");newy+=speed[6];  location.reload();
 						}
 					}
 					newy = newy + speed[6];
@@ -317,16 +318,16 @@
 						speed[7] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[7];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[7] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses"); newy+=speed[7];  location.reload();
 						}
 					}
 					newy = newy + speed[7];
@@ -352,16 +353,16 @@
 						speed[8] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses");newy+=speed[8];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[8] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses"); newy+=speed[8];  location.reload();
 						}
 					}
 					newy = newy + speed[8];
@@ -388,16 +389,16 @@
 						speed[9] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses");  newy+=speed[9];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[9] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses"); newy+=speed[9];  location.reload();
 						}
 					}
 					newy = newy + speed[9];
@@ -423,16 +424,16 @@
 						speed[10] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[10];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[10] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses"); newy+=speed[10];  location.reload();
 						}
 					}
 					newy = newy + speed[10];
@@ -459,16 +460,16 @@
 						speed[11] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[11];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[11] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses");newy+=speed[11];  location.reload();
 						}
 					}
 					newy = newy + speed[11];
@@ -495,16 +496,16 @@
 						speed[12] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[12];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[12] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses");newy+=speed[12];  location.reload();
 						}
 					}   
 					newy = newy + speed[12];
@@ -530,16 +531,16 @@
 						speed[13] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses");newy+=speed[13];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[13] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses");newy+=speed[13];  location.reload();
 						}
 					}
 					newy = newy + speed[13];
@@ -566,16 +567,16 @@
 						speed[14] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses");newy+=speed[14];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[14] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses");newy+=speed[14];  location.reload();
 						}
 					}
 					newy = newy + speed[14];
@@ -601,16 +602,16 @@
 						speed[15] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[15];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[15] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses");newy+=speed[15];  location.reload();
 						}
 					}
 					newy = newy + speed[15];
@@ -637,16 +638,16 @@
 						speed[16] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses  WELL PLAYED BOTH"); newy+=speed[16];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[16] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses WELL PLAYED BOTH"); newy+=speed[16];  location.reload();
 						}
 					}
 					newy = newy + speed[16];
@@ -673,16 +674,16 @@
 						speed[17] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[17];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[17] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses"); newy+=speed[17];  location.reload();
 						}
 					}
 					newy = newy + speed[17];
@@ -708,16 +709,16 @@
 						speed[18] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"); newy+=speed[18];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[18] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses"); newy+=speed[18];  location.reload();
 						}
 					}
 					newy = newy + speed[18];
@@ -744,16 +745,16 @@
 						speed[19] = -10;
 						var chkx = parseInt(rect2.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player2 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player2 + "  loses"+" YOU WERE JUST EXPERIMENTING ON NUMBER OF BALLS"+" HAVE A NICE DAY"); newy+=speed[19];  location.reload();
 						}
 					}
 					if (newy < 50) {
 						speed[19] = 10;
 						var chkx = parseInt(rect1.getAttribute("x"));
 						var ckx = parseInt(this.circ.getAttribute("cx"));
-						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
-							alert (player1 + "  loses");
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 110))){
+							alert (player1 + "  loses"+" YOU WERE JUST EXPERIMENTING ON NUMBER OF BALLS"+" HAVE A NICE DAY"); newy+=speed[19];  location.reload();
 						}
 					}
 					newy = newy + speed[19];
@@ -765,30 +766,40 @@
         main();
     </script>
 </head>
-<body>
-<svg width="100%" height="800px">
-<rect x="5" y="5"  width="150" height="20" stroke="green" stroke-width="0" fill="green" id="rect1" />
-<rect x="5" y="775"  width="150" height="20" stroke="green" stroke-width="0" fill="green" id="rect2"/>
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball1" />
-<circle cx="300" cy="755" r="20" fill="red" opacity="0" id="ball2" />
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball3" />
-<circle cx="300" cy="755" r="20" fill="red" opacity="0" id="ball4" /> 
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball5" />
-<circle cx="300" cy="755" r="20" fill="red" opacity="0" id="ball6" />
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball7" />
-<circle cx="300" cy="755" r="20" fill="red" opacity="0" id="ball8" />
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball9" />
-<circle cx="300" cy="755" r="20" fill="red" opacity="0" id="ball10" />
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball11" />
-<circle cx="300" cy="755" r="20" fill="red" opacity="0" id="ball12" />
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball13" />
-<circle cx="300" cy="755" r="20" fill="red" opacity="0" id="ball14" />
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball15" />
-<circle cx="300" cy="755" r="20" fill="red" opacity="0" id="ball16" />
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball17" />
-<circle cx="300" cy="755" r="20" fill="red" opacity="0" id="ball18" />
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball19" />
-<circle cx="300" cy="755" r="20" fill="red" opacity="0" id="ball20" />
+<body  background="images.jpg">
+<svg width="100%" height="800px" >
+<line x1="0" y1="0" x2="0" y2="799" style="stroke:rgb(255,0,0);stroke-width:3" />
+<line x1="0" y1=0" x2="1110" y2="0" style="stroke:rgb(255,0,0);stroke-width:3" />
+<line x1="0" y1="799" x2="1110" y2="799" style="stroke:rgb(255,0,0);stroke-width:3" />
+<line x1="1110" y1="0" x2="1110" y2="799" style="stroke:rgb(255,0,0);stroke-width:3" />
+<defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ccff33;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff0000;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+<rect x="5" y="5"  width="100" height="20" stroke="green" stroke-width="1" fill=#b8860b id="rect1" />
+<rect x="5" y="775"  width="100" height="20" stroke="green" stroke-width="1" fill=#b8860b id="rect2"/>
+<circle cx="300" cy="50" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0"  id="ball1" />
+<circle cx="300" cy="755" r="20"stroke="black" stroke-width="2" fill="url(#grad1)"  opacity="0" id="ball2" />
+<circle cx="300" cy="50" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball3" />
+<circle cx="300" cy="755" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball4" /> 
+<circle cx="300" cy="50" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball5" />
+<circle cx="300" cy="755" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball6" />
+<circle cx="300" cy="50" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball7" />
+<circle cx="300" cy="755" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball8" />
+<circle cx="300" cy="50" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball9" />
+<circle cx="300" cy="755" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball10" />
+<circle cx="300" cy="50" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball11" />
+<circle cx="300" cy="755" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball12" />
+<circle cx="300" cy="50" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball13" />
+<circle cx="300" cy="755" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball14" />
+<circle cx="300" cy="50" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball15" />
+<circle cx="300" cy="755" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball16" />
+<circle cx="300" cy="50" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball17" />
+<circle cx="300" cy="755" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball18" />
+<circle cx="300" cy="50" r="20" stroke="black" stroke-width="2" fill="url(#grad1)" opacity="0" id="ball19" />
+<circle cx="300" cy="755" r="20" stroke="black" stroke-width="2" fill=#000000 opacity="0" id="ball20" />
 </svg>
 </body>
 </html>
