@@ -4,67 +4,89 @@
     <title></title>
     <style></style>
     <script type="text/javascript">
-        var  KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40, KEY_A = 65, KEY_D = 68;
-		var  left=0,right=0,A=0,D=0;	var timerFunction = 0,speed =10;
-        function a() {		
-            document.addEventListener('keydown', keyDown ,false);
-			document.addEventListener('keyup', keyUp ,false);
-        }  
-		function keyDown() {
-			if(event.keyCode==KEY_LEFT)    left=1; 
-			if(event.keyCode==KEY_RIGHT)   right=1; 
-			if(event.keyCode==KEY_A)       A=1; 
-			if(event.keyCode==KEY_D)       D=1; 
-			if(event.keyCode==KEY_UP)      startAnimation();
+        var KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40, KEY_A = 65, KEY_D = 68;
+        var left = 0, right = 0, A = 0, D = 0; var timerFunction = null, speed = 10, i = -1;
+        var balls = ["ball1", "ball2", "ball3", "ball4", "ball5", "ball6", "ball7", "ball8", "ball9", "ball10", "ball11", "ball12", "ball13", "ball14", "ball15", "ball16", "ball17", "ball18", "ball19", "ball20"];
+        var circle = [];
+        function main() {
+            document.addEventListener('keydown', function (event) {
+                if (event.keyCode == KEY_LEFT) left = 1;
+                if (event.keyCode == KEY_RIGHT) right = 1;
+                if (event.keyCode == KEY_A) A = 1;
+                if (event.keyCode == KEY_D) D = 1; b(); d();
+                if (event.keyCode == KEY_UP) startAnimation();
+            }, false);
+            document.addEventListener('keyup', function (event) {
+                if (event.keyCode == KEY_LEFT) left = 0;
+                if (event.keyCode == KEY_RIGHT) right = 0;
+                if (event.keyCode == KEY_A) A = 0;
+                if (event.keyCode == KEY_D) D = 0; b(); d();
+            }, false);
         }
-		function keyUp() {
-			if(event.keyCode==KEY_LEFT) left=0;
-			if(event.keyCode==KEY_RIGHT) right=0;   
-			if(event.keyCode==KEY_A) A=0;
-			if(event.keyCode==KEY_D) D=0;  
-		}
-		function te() {
-			var rect1 = document.getElementById("rect1");
-		    var x1 = parseInt(rect1.getAttribute("x"));
-		    if((left == 1) && (x1 >= 10))    x1 -= 10;
-		    if((right == 1) && (x1 <= 900))  x1 += 10;
-		    rect1.setAttribute("x", x1);
-			var rect2 = document.getElementById("rect2");
-		    var x2 = parseInt(rect2.getAttribute("x"));
-		    if((A == 1) && (x2 >= 10))  x2 -= 10;
-			if((D == 1) && (x2 <= 900))  x2 += 10;
-			rect2.setAttribute("x", x2);
-		}
-		function startAnimation() {
-			var circle = document.getElementById("ball");
-			var vis =  parseInt(circle.getAttribute("opacity")); 
-			vis = 100; 
-			circle.setAttribute("opacity", vis); 
-			var rect1 = document.getElementById("rect1");
-			var startrectx = parseInt(rect1.getAttribute("x"));
-			circle.setAttribute("cx",startrectx + 100);
-			if (timerFunction == 0)  {
-				timerFunction = 1;
-				setInterval(animate, 20);
-			}
+        function b() {
+            var rect1 = document.getElementById("rect1");
+            var x = parseInt(rect1.getAttribute("x"));
+            if ((left == 1) && (x >= 10)) { x -= 10; }
+            if ((right == 1) && (x <= 900)) { x += 10 };
+            rect1.setAttribute("x", x);
+        }
+        function d() {
+            var rect2 = document.getElementById("rect2");
+            var x = parseInt(rect2.getAttribute("x"));
+            if ((A == 1) && (x >= 10)) { x -= 10; }
+            if ((D == 1) && (x <= 900)) { x += 10 };
+            rect2.setAttribute("x", x);
+        }
+        function startAnimation() {
+            i += 1;
+            if (i < 20) {
+                circle[i] = document.getElementById(balls[i]);
+            }
+            var vis = parseInt(circle[i].getAttribute("opacity"));
+            vis = 100;
+            circle[i].setAttribute("opacity", vis);
+            var rect1 = document.getElementById("rect1");
+            var startrectx = parseInt(rect1.getAttribute("x"));
+            circle[i].setAttribute("cx", startrectx + 100);
+            if (timerFunction == null) {
+                timerFunction = setInterval(animate, 20);
+            }
         }
         function animate() {
-			te();
-            var circle = document.getElementById("ball");
-            var x = circle.getAttribute("cy");
-			var newX = speed + parseInt(x);
-            if(newX > 755)     speed = -10;
-			if(newX < 50) 		speed = 10;
-            circle.setAttribute("cy", newX);
+            if (i < 20)     circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755)     speed = -10;
+            if (newy < 50)     speed = 10;
+            circle[i].setAttribute("cy", newy);
         }
-        a();
+        main();
     </script>
 </head>
 <body>
 <svg width="100%" height="800px">
 <rect x="5" y="5"  width="200" height="20" stroke="green" stroke-width="5" fill="#555" id="rect1" />
 <rect x="5" y="775"  width="200" height="20" stroke="green" stroke-width="5" fill="#555" id="rect2"/>
-<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball" /> 
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball1" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball2" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball3" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball4" /> 
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball5" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball6" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball7" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball8" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball9" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball10" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball11" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball12" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball13" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball14" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball15" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball16" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball17" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball18" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball19" />
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball20" />
 </svg>
 </body>
 </html>
