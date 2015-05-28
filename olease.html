@@ -4,54 +4,67 @@
     <title></title>
     <style></style>
     <script type="text/javascript">
-        var KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40, KEY_A = 65, KEY_D = 68;
+        var  KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40, KEY_A = 65, KEY_D = 68;
+		var  left=0,right=0,A=0,D=0;	var timerFunction = 0,speed =10;
         function a() {		
-            document.addEventListener("keydown", function (evt) {
-                switch (evt.keyCode) {
-                    case KEY_LEFT: b(0); break;
-                    case KEY_RIGHT: b(1); break;
-                    case KEY_A: d(0); break;
-                    case KEY_D: d(1); break;
-		    case KEY_UP: c(); break;
-                }
-            });
+            document.addEventListener('keydown', keyDown ,false);
+			document.addEventListener('keyup', keyUp ,false);
         }  
-	function b(temp) {
-	    var rec = document.getElementById("rect1");
-	    var x = parseInt(rec.getAttribute("x"));
-	    if((temp==0)&&(x>=10)){x-=10;}
-	    if((temp==1)&&(x<=900)) {x+=10};
-	    rec.setAttribute("x", x);
+		function keyDown() {
+			if(event.keyCode==KEY_LEFT)    left=1; 
+			if(event.keyCode==KEY_RIGHT)   right=1; 
+			if(event.keyCode==KEY_A)       A=1; 
+			if(event.keyCode==KEY_D)       D=1; 
+			if(event.keyCode==KEY_UP)      startAnimation();
         }
-	function d(temp) {
-	    var rec = document.getElementById("rect2");
-	    var x = parseInt(rec.getAttribute("x"));
-	    if((temp==0)&&(x>=10)){x-=10;}
-	    if((temp==1)&&(x<=900)) {x+=10};
-	    rec.setAttribute("x", x);
+		function keyUp() {
+			if(event.keyCode==KEY_LEFT) left=0;
+			if(event.keyCode==KEY_RIGHT) right=0;   
+			if(event.keyCode==KEY_A) A=0;
+			if(event.keyCode==KEY_D) D=0;  
+		}
+		function te() {
+			var rect1 = document.getElementById("rect1");
+		    var x1 = parseInt(rect1.getAttribute("x"));
+		    if((left == 1) && (x1 >= 10))    x1 -= 10;
+		    if((right == 1) && (x1 <= 900))  x1 += 10;
+		    rect1.setAttribute("x", x1);
+			var rect2 = document.getElementById("rect2");
+		    var x2 = parseInt(rect2.getAttribute("x"));
+		    if((A == 1) && (x2 >= 10))  x2 -= 10;
+			if((D == 1) && (x2 <= 900))  x2 += 10;
+			rect2.setAttribute("x", x2);
+		}
+		function startAnimation() {
+			var circle = document.getElementById("ball");
+			var vis =  parseInt(circle.getAttribute("opacity")); 
+			vis = 100; 
+			circle.setAttribute("opacity", vis); 
+			var rect1 = document.getElementById("rect1");
+			var startrectx = parseInt(rect1.getAttribute("x"));
+			circle.setAttribute("cx",startrectx + 100);
+			if (timerFunction == 0)  {
+				timerFunction = 1;
+				setInterval(animate, 20);
+			}
         }
-	function c() {
-	    var ball = document.getElementById("ball");
- 	    var vis =  parseInt(ball.getAttribute("opacity")); 
-	    vis = 100; 
-	    ball.setAttribute("opacity", vis); 
-	}
+        function animate() {
+			te();
+            var circle = document.getElementById("ball");
+            var x = circle.getAttribute("cy");
+			var newX = speed + parseInt(x);
+            if(newX > 755)     speed = -10;
+			if(newX < 50) 		speed = 10;
+            circle.setAttribute("cy", newX);
+        }
         a();
     </script>
 </head>
 <body>
 <svg width="100%" height="800px">
-<rect x="5" y="5"  width="200" height="20" stroke="green" stroke-width="5" fill="#555" id="rect1"><animateTransform
-            attributeName="transform"
-            begin="0s"
-            dur="20s"
-            type="rotate"
-            from="0 60 60"
-            to="360 60 60"
-            repeatCount="indefinite"
-        /></rect>
+<rect x="5" y="5"  width="200" height="20" stroke="green" stroke-width="5" fill="#555" id="rect1" />
 <rect x="5" y="775"  width="200" height="20" stroke="green" stroke-width="5" fill="#555" id="rect2"/>
-<circle cx="300" cy="150" r="50" fill="red" opacity="0" id="ball" /> 
+<circle cx="300" cy="50" r="20" fill="red" opacity="0" id="ball" /> 
 </svg>
 </body>
 </html>
