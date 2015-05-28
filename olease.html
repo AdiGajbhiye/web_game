@@ -5,9 +5,9 @@
     <style></style>
     <script type="text/javascript">
         var KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40, KEY_A = 65, KEY_D = 68, KEY_W = 87;
-        var left = 0, right = 0, A = 0, D = 0, j = 0;   var circle = [];
+        var left = 0, right = 0, A = 0, D = 0, j = 0;   var circle = [];  var player1 = "Aditya", player2 = "Okee";
         var balls = ["ball1", "ball2", "ball3", "ball4", "ball5", "ball6", "ball7", "ball8", "ball9", "ball10", "ball11", "ball12", "ball13", "ball14", "ball15", "ball16", "ball17", "ball18", "ball19", "ball20"];
-		var speed = [10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10];
+		var speed = [10,-10,10,-10,10,-10,10,-10,10,-10,10,-10,10,-10,10,-10,10,-10,10,-10];
         function main() {
             document.addEventListener('keydown', function (event) {
                 if (event.keyCode == KEY_LEFT) left = 1;
@@ -63,8 +63,22 @@
 					this.circ = document.getElementById(balls[0]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[0] = -10;
-					if (newy < 50)     speed[0] = 10;
+					if (newy > 755) {
+						speed[0] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[0] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[0];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -85,8 +99,22 @@
 					this.circ = document.getElementById(balls[1]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[1] = -10;
-					if (newy < 50)     speed[1] = 10;
+					if (newy > 755) {
+						speed[1] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[1] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[1];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -107,8 +135,22 @@
 					this.circ = document.getElementById(balls[2]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[2] = -10;
-					if (newy < 50)     speed[2] = 10;
+					if (newy > 755) {
+						speed[2] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[2] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[2];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -128,8 +170,22 @@
 					this.circ = document.getElementById(balls[3]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[3] = -10;
-					if (newy < 50)     speed[3] = 10;
+					if (newy > 755) {
+						speed[3] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[3] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[3];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -150,8 +206,22 @@
 					this.circ = document.getElementById(balls[4]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[4] = -10;
-					if (newy < 50)     speed[4] = 10;
+					if (newy > 755) {
+						speed[4] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[4] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[4];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -171,8 +241,22 @@
 					this.circ = document.getElementById(balls[5]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[5] = -10;
-					if (newy < 50)     speed[5] = 10;
+					if (newy > 755) {
+						speed[5] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[5] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[5];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -193,8 +277,22 @@
 					this.circ = document.getElementById(balls[6]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[6] = -10;
-					if (newy < 50)     speed[6] = 10;
+					if (newy > 755) {
+						speed[4] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[4] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[6];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -215,8 +313,22 @@
 					this.circ = document.getElementById(balls[7]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[7] = -10;
-					if (newy < 50)     speed[7] = 10;
+					if (newy > 755) {
+						speed[7] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[7] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[7];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -236,8 +348,22 @@
 					this.circ = document.getElementById(balls[8]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[8] = -10;
-					if (newy < 50)     speed[8] = 10;
+					if (newy > 755) {
+						speed[8] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[8] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[8];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -258,8 +384,22 @@
 					this.circ = document.getElementById(balls[9]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[9] = -10;
-					if (newy < 50)     speed[9] = 10;
+					if (newy > 755) {
+						speed[9] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[9] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[9];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -279,8 +419,22 @@
 					this.circ = document.getElementById(balls[10]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[10] = -10;
-					if (newy < 50)     speed[10] = 10;
+					if (newy > 755) {
+						speed[10] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[10] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[10];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -301,8 +455,22 @@
 					this.circ = document.getElementById(balls[11]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[11] = -10;
-					if (newy < 50)     speed[11] = 10;
+					if (newy > 755) {
+						speed[11] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[11] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[11];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -323,8 +491,22 @@
 					this.circ = document.getElementById(balls[12]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[12] = -10;
-					if (newy < 50)     speed[12] = 10;
+					if (newy > 755) {
+						speed[12] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[12] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}   
 					newy = newy + speed[12];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -344,8 +526,22 @@
 					this.circ = document.getElementById(balls[13]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[13] = -10;
-					if (newy < 50)     speed[13] = 10;
+					if (newy > 755) {
+						speed[13] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[13] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[13];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -366,8 +562,22 @@
 					this.circ = document.getElementById(balls[14]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[14] = -10;
-					if (newy < 50)     speed[14] = 10;
+					if (newy > 755) {
+						speed[14] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[14] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[14];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -387,8 +597,22 @@
 					this.circ = document.getElementById(balls[15]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[15] = -10;
-					if (newy < 50)     speed[15] = 10;
+					if (newy > 755) {
+						speed[15] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[15] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[15];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -409,8 +633,22 @@
 					this.circ = document.getElementById(balls[16]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[16] = -10;
-					if (newy < 50)     speed[16] = 10;
+					if (newy > 755) {
+						speed[16] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[16] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[16];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -431,8 +669,22 @@
 					this.circ = document.getElementById(balls[17]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[17] = -10;
-					if (newy < 50)     speed[17] = 10;
+					if (newy > 755) {
+						speed[17] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[17] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[17];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -452,8 +704,22 @@
 					this.circ = document.getElementById(balls[18]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[18] = -10;
-					if (newy < 50)     speed[18] = 10;
+					if (newy > 755) {
+						speed[18] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[18] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[18];
 					this.circ.setAttribute("cy", newy);
 				}
@@ -474,8 +740,22 @@
 					this.circ = document.getElementById(balls[19]);
 					var y = this.circ.getAttribute("cy");
 					var newy = parseInt(y);
-					if (newy > 755)     speed[19] = -10;
-					if (newy < 50)     speed[19] = 10;
+					if (newy > 755) {
+						speed[19] = -10;
+						var chkx = parseInt(rect2.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player2 + "  loses");
+						}
+					}
+					if (newy < 50) {
+						speed[19] = 10;
+						var chkx = parseInt(rect1.getAttribute("x"));
+						var ckx = parseInt(this.circ.getAttribute("cx"));
+						if ((ckx >= (chkx - 10)) && (ckx <= (chkx + 160))){
+							alert (player1 + "  loses");
+						}
+					}
 					newy = newy + speed[19];
 					this.circ.setAttribute("cy", newy);
 				}
