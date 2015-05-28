@@ -5,16 +5,15 @@
     <style></style>
     <script type="text/javascript">
         var KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40, KEY_A = 65, KEY_D = 68;
-        var left = 0, right = 0, A = 0, D = 0; var timerFunction = null, speed = 10, i = -1;
+        var left = 0, right = 0, A = 0, D = 0; var t1 = 0 , t2 = 0, i = -1,speed1 = 10,speed2 = 10;  var circle = [];
         var balls = ["ball1", "ball2", "ball3", "ball4", "ball5", "ball6", "ball7", "ball8", "ball9", "ball10", "ball11", "ball12", "ball13", "ball14", "ball15", "ball16", "ball17", "ball18", "ball19", "ball20"];
-        var circle = [];
         function main() {
             document.addEventListener('keydown', function (event) {
                 if (event.keyCode == KEY_LEFT) left = 1;
                 if (event.keyCode == KEY_RIGHT) right = 1;
                 if (event.keyCode == KEY_A) A = 1;
                 if (event.keyCode == KEY_D) D = 1; b(); d();
-                if (event.keyCode == KEY_UP) startAnimation();
+                if (event.keyCode == KEY_UP) startAnimation() ;
             }, false);
             document.addEventListener('keyup', function (event) {
                 if (event.keyCode == KEY_LEFT) left = 0;
@@ -39,25 +38,182 @@
         }
         function startAnimation() {
             i += 1;
-            if (i < 20) {
-                circle[i] = document.getElementById(balls[i]);
-            }
-            var vis = parseInt(circle[i].getAttribute("opacity"));
-            vis = 100;
-            circle[i].setAttribute("opacity", vis);
-            var rect1 = document.getElementById("rect1");
-            var startrectx = parseInt(rect1.getAttribute("x"));
-            circle[i].setAttribute("cx", startrectx + 100);
-            if (timerFunction == null) {
-                timerFunction = setInterval(animate, 20);
-            }
+            circle[i] = document.getElementById(balls[i]);
+			var vis = parseInt(circle[i].getAttribute("opacity"));
+			vis = 100;
+			circle[i].setAttribute("opacity", vis);
+			var rect1 = document.getElementById("rect1");
+			var startrectx = parseInt(rect1.getAttribute("x"));
+			circle[i].setAttribute("cx", startrectx + 100);
+ 			if ( i == 0 ){
+				if(t1==0){
+					setInterval(animate1, 20);
+					t1=1;
+				}
+			}
+			if ( i == 1 ){
+				if(t2==0){
+					setInterval(animate2, 20);
+					t2=1;
+				}
+			}            
         }
-        function animate() {
-            if (i < 20)     circle[i] = document.getElementById(balls[i]);
+        function animate1() {
+            var x = circle[0].getAttribute("cy");
+            var newy = speed1 + parseInt(x);
+            if (newy > 755)     speed1 = -10;
+            if (newy < 50)     speed1 = 10;
+            circle[0].setAttribute("cy", newy);
+        }
+        function animate2() {
+            var y = circle[1].getAttribute("cy");
+            var ny = speed2 + parseInt(y);
+            if (ny > 755) speed2 = -10;
+            if (ny < 50) speed2 = 10;
+            circle[1].setAttribute("cy", ny);
+        }
+        function animate3() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
             var x = circle[i].getAttribute("cy");
             var newy = speed + parseInt(x);
-            if (newy > 755)     speed = -10;
-            if (newy < 50)     speed = 10;
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate4() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate5() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate6() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate7() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate8() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate9() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate10() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate11() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate12() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate13() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate14() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate15() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate16() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate17() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate18() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate19() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
+            circle[i].setAttribute("cy", newy);
+        }
+        function animate20() {
+            if (i < 20) circle[i] = document.getElementById(balls[i]);
+            var x = circle[i].getAttribute("cy");
+            var newy = speed + parseInt(x);
+            if (newy > 755) speed = -10;
+            if (newy < 50) speed = 10;
             circle[i].setAttribute("cy", newy);
         }
         main();
