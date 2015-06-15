@@ -1,4 +1,5 @@
-A 2-player game played on same computer.
+A 2-player game played on same computer using javascript and html5 svg feature.
+Game is supported only by chrome.   
 Game Rules:
 1)Each player can moved only horizontally.
 2)Each player has 10 bouncing missile i.e. the missile after projecting bounces back after reaching the other side and can hit
